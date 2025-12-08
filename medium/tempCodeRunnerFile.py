@@ -1,52 +1,38 @@
-from cryptography.fernet import Fernet
-import os
+import random
 
-def write_key():
-    key = Fernet.generate_key()
-    with open("key.key", "wb") as key_file:
-        key_file.write(key)
+play = input("Do you want to play the game?(y/n) : ").lower()
 
-def load_key():
-    if not os.path.exists("key.key"):
-        write_key()
-        
-    file = open("key.key", "rb")
-    key = file.read()
-    file.close()
-    return key
+Total_score = 0
 
-master_password = input("Enter your master password: ")
-key = load_key() 
-fer = Fernet(key)
+def dice_score():
+    result = random.randint(1, 6)
+    return result
 
-def view():
-    if not os.path.exists("password.txt"):
-        print("No passwords stored yet.")
-        return
+if play == "y":
+    print("===================Rules====================")
+    print("1.If you roll 1 your score will set to 0 and your turn ends.")
+    print("2.As long as you didn't roll 1 you can continue infinitely or press ""n"" to end turn early can keep your score.")
+    print("3.Pressing ""y"" will allow to continue to roll dice until you hit 0.")
+    print()
 
-    with open("password.txt", "r") as file:
-        for line in file.readlines():
-            data = line.strip()
-            if "|" in data: 
-                user_name, user_password = data.split("|")
-                decrypted_pass = fer.decrypt(user_password.encode()).decode()
-                print(f"User: {user_name} | Password: {decrypted_pass}")
+    while True:
+        choice = input("Roll dice?(y/n) : ").lower()
+        match choice:
+            case "y":
+                if dice_score() == 1:
+                    print(f"Your last dice roll : {dice_score()} !!! oops unclucky")
+                    print(f"Your Total Score is 0")
+                    break
+                else:
+                    Total_score = Total_score + dice_score()
+                    print(f"Your last dice roll : {dice_score()}")
+                    print(f"Current score : {Total_score}")
+            case "n":
+                print(f"Your final score is {Total_score}")
+                break
+                
+elif play == "n":
+    print("Let's play latter !")
 
-def add():
-    name = input("Enter the name: ")
-    pwd = input("Enter the password: ")
-
-    with open("password.txt", "a") as file:
-        encrypted_pwd = fer.encrypt(pwd.encode()).decode()
-        file.write(f"{name}|{encrypted_pwd}\n")
-
-while True:
-    mode = input("Add a password or view a password? (add/view), q to quit: ").lower()
-    if mode == "q":
-        break
-    elif mode == "view":
-        view()
-    elif mode == "add":
-        add()
-    else:
-        print("Invalid input!!")
+else:
+    print("Invlaid input please enter y/n !!!")
