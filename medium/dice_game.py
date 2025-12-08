@@ -1,12 +1,11 @@
 import random
 
-play = input("Do you want to play the game?(y/n) : ").lower()
-
-Total_score = 0
-
 def dice_score():
     result = random.randint(1, 6)
     return result
+
+play = input("Do you want to play the game?(y/n) : ").lower()
+Total_score = 0
 
 if play == "y":
     print("===================Rules====================")
@@ -19,20 +18,25 @@ if play == "y":
         choice = input("Roll dice?(y/n) : ").lower()
         match choice:
             case "y":
-                if dice_score() == 1:
-                    print(f"Your last dice roll : {dice_score()} !!! oops unclucky")
+                current_roll = dice_score()
+                
+                if current_roll == 1:
+                    print(f"Your last dice roll : {current_roll} !!! oops unlucky")
                     print(f"Your Total Score is 0")
+                    Total_score = 0
                     break
                 else:
-                    Total_score = Total_score + dice_score()
-                    print(f"Your last dice roll : {dice_score()}")
+                    Total_score = Total_score + current_roll
+                    print(f"Your last dice roll : {current_roll}")
                     print(f"Current score : {Total_score}")
             case "n":
                 print(f"Your final score is {Total_score}")
                 break
+            case _:
+                print("Invlaid input please enter y/n !!!")
                 
 elif play == "n":
-    print("Let's play latter !")
+    print("Let's play later !")
 
 else:
     print("Invlaid input please enter y/n !!!")
