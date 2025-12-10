@@ -1,0 +1,6 @@
+Yesterday, Captain <name> and their crew blasted off to the planet <planet_name>. 
+Their spaceship, the USS <noun>, was shaped like a giant <food>. 
+The mission was to find the rare <adjective> crystals. 
+Suddenly, a <adjective> alien appeared! It had <number> eyes and looked like a <animal>. 
+The alien shouted, "<phrase>!" and offered them some <noun> to eat. 
+It was the most <adjective> day in space history.
