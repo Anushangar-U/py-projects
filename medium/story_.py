@@ -24,3 +24,5 @@ for word, user_input in anwers.items():
 
 print("\nHere is your story:\n")
 print(story)
+
+
