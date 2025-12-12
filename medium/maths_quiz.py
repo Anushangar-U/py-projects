@@ -43,7 +43,7 @@ def question_generator():
     except ValueError:
         print("Invalid input. Please enter a number next time.")
 
-print("--- Welcome to the Math Quiz ---")
+print("---- Welcome to the Math Quiz ----")
 
 while True:
     game = input("\nDo you want to play a math quiz game? (y/n): ").strip().lower()
