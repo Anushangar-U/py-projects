@@ -1,35 +1,46 @@
 import random
 
-operators = ["+","-","*","/"]
-
-NUM1 = random.randint(1,100)
-NUM2 = random.randint(1,100)
-q_opearator = random.choice(operators)
-
 def question_generator():
-    user_anws = input(f"what is {NUM1} {q_opearator} {NUM2}")
-    match q_opearator:
+    operators = ["+", "-", "*", "/"]
+
+    num1 = random.randint(1, 100)
+    num2 = random.randint(1, 100)
+    q_operator = random.choice(operators)
+
+    match q_operator:
         case "+":
-            anws = NUM1 + NUM2
+            ans = num1 + num2
         case "-":
-            anws = NUM1 - NUM2
+            ans = num1 - num2
         case "/":
-            anws = NUM1 / NUM2
+            ans = round(num1 / num2, 2)
         case "*":
-            anws = NUM1 * NUM2
+            ans = num1 * num2
 
-    if user_anws == anws:
-        print("correct!")
+    if q_operator == "/":
+        print(f"What is {num1} {q_operator} {num2}? (Round to 2 decimal places)")
     else:
-        print(f"wrong! the correct answer is {anws}")
+        print(f"What is {num1} {q_operator} {num2}?")
 
-game = input("Do you want to play a math quiz game?(y/n)").lower()
+    try:
+        user_ans = float(input("Your answer: "))
+        if user_ans == ans:
+            print("Correct! Good job.")
+        else:
+            print(f"Wrong! The correct answer is {ans}")
+            
+    except ValueError:
+        print("Invalid input. Please enter a number next time.")
 
-if game == "y":
-    pass
+print("--- Welcome to the Math Quiz ---")
 
-elif game == "n":
-    print("lets play next time.")
+while True:
+    game = input("\nDo you want to play a math quiz game? (y/n): ").strip().lower()
 
-else:
-    print("please enter a valid input.")
+    if game == "y":
+        question_generator()
+    elif game == "n":
+        print("Let's play next time. Bye!")
+        break
+    else:
+        print("Please enter 'y' for yes or 'n' for no.")
