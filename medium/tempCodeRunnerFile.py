@@ -34,6 +34,10 @@ def question_generator():
         
         if time_taken > 10:
             print(f"Too slow! You took {round(time_taken, 1)} seconds.")
+            if user_ans == ans:
+                print(f"However, your answer {user_ans} is correct.")
+            elif user_ans != ans:
+                print(f"The correct answer is {ans}")
         else:
             if user_ans == ans:
                 print(f"Correct! You answered in {round(time_taken, 1)} seconds.")
