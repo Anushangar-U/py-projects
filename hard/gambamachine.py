@@ -1,6 +1,16 @@
+import random
+
 MAX_LINES = 3
 MAX_BET = 10000
 MIN_BET = 1000
+
+ROWS = 3
+COLS = 3
+
+s_count = {"A":2,"B":3,"C":4,"D":5}
+
+def slot_spin():
+    pass
 
 def deposit():
     while True:
