@@ -10,7 +10,20 @@ COLS = 3
 s_count = {"A":2,"B":3,"C":4,"D":5}
 
 def slot_spin():
-    pass
+    symbol_collections = []
+    for symbol,count in s_count.items():
+        for i in range(count):
+            symbol_collections.append(symbol)
+
+    columns = []
+    for i in range(COLS):
+        column = []
+        for j in range(ROWS):
+            value = random.choice(symbol_collections)
+            column.append(value)
+        columns.append(column)
+    
+    return columns
 
 def deposit():
     while True:
