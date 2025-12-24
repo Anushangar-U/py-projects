@@ -36,6 +36,18 @@ def get_SlotMchn(columns):
 
 print(get_SlotMchn(columns))
 
+def check_winnings(columns,bet,lines,values):
+    winnings = 0
+    for line in range(lines):
+        symbol = columns[0][line]
+        for column in columns:
+            symbol_to_check = column[line]
+            if symbol != symbol_to_check:
+                break
+        else:
+            winnings += values[symbol] * bet
+    return winnings
+
 def deposit():
     while True:
         amount = input("Enter amount to deposit: ")
